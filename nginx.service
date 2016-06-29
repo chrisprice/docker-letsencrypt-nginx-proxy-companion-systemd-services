@@ -1,7 +1,7 @@
 [Unit]
 Description=nginx
-After=docker.service
-Requires=docker.service
+Requires=docker.service network-online.target
+After=docker.service network-online.target
 
 [Service]
 TimeoutStartSec=0
