@@ -4,7 +4,9 @@ After=docker.service
 Requires=docker.service
 
 [Service]
-RestartSec=30s
+TimeoutStartSec=0
+Restart=always
+RestartSec=3s
 ExecStartPre=-/usr/bin/docker kill nginx
 ExecStartPre=-/usr/bin/docker rm nginx
 ExecStartPre=/usr/bin/docker pull nginx

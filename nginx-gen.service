@@ -4,6 +4,8 @@ After=nginx.service
 Requires=nginx.service
 
 [Service]
+TimeoutStartSec=0
+Restart=always
 RestartSec=30s
 ExecStartPre=-/usr/bin/docker kill nginx-gen
 ExecStartPre=-/usr/bin/docker rm nginx-gen
