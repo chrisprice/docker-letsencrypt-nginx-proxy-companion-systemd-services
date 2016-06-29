@@ -1,0 +1,15 @@
+[Unit]
+Description=nginx
+After=docker.service
+Requires=docker.service
+
+[Service]
+RestartSec=30s
+ExecStartPre=-/usr/bin/docker kill nginx
+ExecStartPre=-/usr/bin/docker rm nginx
+ExecStartPre=/usr/bin/docker pull nginx
+ExecStart=/usr/bin/docker run --name nginx -p 80:80 -p 443:443 -v /etc/nginx/conf.d -v /etc/nginx/vhost.d -v /usr/share/nginx/html -v /etc/nginx/certs:/etc/nginx/certs:ro nginx
+ExecStop=/usr/bin/docker stop nginx
+
+[Install]
+WantedBy=multi-user.target
