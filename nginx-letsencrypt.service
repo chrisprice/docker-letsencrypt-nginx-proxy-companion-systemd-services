@@ -1,10 +1,12 @@
 [Unit]
 Description=nginx-letsencrypt
-After=nginx.service nginx-gen.service
-Requires=nginx.service nginx-gen.service
+Requires=docker.service
+After=docker.service
 
 [Service]
-RestartSec=30s
+TimeoutStartSec=0
+Restart=always
+RestartSec=3s
 ExecStartPre=-/usr/bin/docker kill nginx-letsencrypt
 ExecStartPre=-/usr/bin/docker rm nginx-letsencrypt
 ExecStartPre=/usr/bin/docker pull jrcs/letsencrypt-nginx-proxy-companion

@@ -1,12 +1,12 @@
 [Unit]
 Description=nginx-gen
-After=nginx.service
-Requires=nginx.service
+Requires=docker.service
+After=docker.service
 
 [Service]
 TimeoutStartSec=0
 Restart=always
-RestartSec=30s
+RestartSec=3s
 ExecStartPre=-/usr/bin/docker kill nginx-gen
 ExecStartPre=-/usr/bin/docker rm nginx-gen
 ExecStartPre=/usr/bin/docker pull jwilder/docker-gen
