@@ -5,7 +5,7 @@ To install, from within a clone of this repository, run -
 ```
   sudo su
   mkdir -p /etc/nginx
-  cp nginx.tmpl > /etc/nginx/nginx.tmpl
+  cp nginx.tmpl /etc/nginx/nginx.tmpl
   cp *.service /etc/systemd/system
   systemctl enable nginx nginx-gen nginx-letsencrypt
 ```
