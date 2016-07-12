@@ -3,14 +3,14 @@ These systemd service definitions encode the three containers defined in the [do
 To install, from within a clone of this repository, run -
 
 ```
-  git clone https://github.com/chrisprice/docker-letsencrypt-nginx-proxy-companion-systemd-services.git
-  cd docker-letsencrypt-nginx-proxy-companion-systemd-services
-  sudo su
-  mkdir -p /etc/nginx
-  cp nginx.tmpl /etc/nginx/nginx.tmpl
-  cp *.service /etc/systemd/system
-  systemctl enable nginx nginx-gen nginx-letsencrypt
-  systemctl start nginx nginx-gen nginx-letsencrypt
+git clone https://github.com/chrisprice/docker-letsencrypt-nginx-proxy-companion-systemd-services.git
+cd docker-letsencrypt-nginx-proxy-companion-systemd-services
+sudo su
+mkdir -p /etc/nginx
+cp nginx.tmpl /etc/nginx/nginx.tmpl
+cp *.service /etc/systemd/system
+systemctl enable nginx nginx-gen nginx-letsencrypt
+systemctl start nginx nginx-gen nginx-letsencrypt
 ```
 
 Containers can then be reverse proxied by specifying the following environment variables when launching them -
@@ -26,7 +26,7 @@ For more details, see the [docker-letsencrypt-nginx-proxy-companion](https://git
 E.g. -
 
 ```
-  docker run -d --name foo.bar.com -e VIRTUAL_HOST=foo.bar.com -e LETSENCRYPT_HOST=foo.bar.com -e LETSENCRYPT_EMAIL=foo@bar.com  nginx
+docker run -d --name foo.bar.com -e VIRTUAL_HOST=foo.bar.com -e LETSENCRYPT_HOST=foo.bar.com -e LETSENCRYPT_EMAIL=foo@bar.com  nginx
 ```
 
 Although you'll probably want to wrap this up in a service file (`foo.bar.com.service`)  -
@@ -54,8 +54,8 @@ WantedBy=multi-user.target
 Which you'll want to copy to the right place, enable and start like so -
 
 ```
-  sudo su
-  cp foo.bar.com.service /etc/systemd/system
-  systemctl enable foo.bar.com
-  systemctl start foo.bar.com
+sudo su
+cp foo.bar.com.service /etc/systemd/system
+systemctl enable foo.bar.com
+systemctl start foo.bar.com
 ```
